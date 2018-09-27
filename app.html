@@ -1,0 +1,681 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>CitaMe</title>
+        <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta property="og:title" content="CitaMe"/>
+        <meta property="og:url" content="http://tiny.cc/CitaMe"/>
+        <meta property="og:site_name" content="CitaMe"/>
+		
+		<!-- FontAwesome - http://fortawesome.github.io/Font-Awesome/ -->
+        <link rel="stylesheet" href="css/font-awesome.min.css" />
+		<!-- jQueryMobileCSS - original without styling -->
+		<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+		<!-- nativeDroid core CSS -->
+        <link rel="stylesheet" href="css/jquerymobile.nativedroid.css" />
+		<!-- nativeDroid: Light/Dark -->
+        <link rel="stylesheet" href="css/jquerymobile.nativedroid.light.css" id='jQMnDTheme' />
+		<!-- nativeDroid: Color Schemes -->
+        <link rel="stylesheet" href="css/jquerymobile.nativedroid.color.yellow.css" id='jQMnDColor' />
+
+        <!-- Responsive images -->
+        <style>
+            img {max-width:85%}
+            @media screen and (orientation: landscape) {
+                .ui-mobile .ui-page {
+                    min-height: 0 !important;
+                }
+            }
+        </style>
+
+        <!-- Twitter image button-->
+        <style>
+            #img_container {
+                position: relative;
+                display: inline-block;
+                text-align: center;
+            }
+
+            .tweet {
+                max-width: 100%
+            }
+
+            .tweetBtn {
+                position: absolute;
+            }
+        </style>
+
+        <!-- jQuery / jQueryMobile Scripts -->
+        <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+
+        <!-- Javascript to select all text in textarea -->
+        <script type="text/javascript">
+            function select_all() {
+                document.getElementById("textarea-1").select();
+            }
+        </script>
+
+    </head>
+    <body>
+
+    <div data-role="page" id="main" data-theme='b'>
+
+        <div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+            <h1>CitaMe</h1>
+            <a href="index.html#main" data-ajax='false'><i class='fa fa-comments-o'></i></a>
+        </div>
+        
+        <div data-role="content">
+            <div class='inset'>
+                <p align="center">
+                    <br>
+                    <img src="images/logo.png"></img>
+                    <br><br>
+                </p>
+
+                <div class="ui-field-contain">
+                <h2>¿Cómo te sientes hoy?</h2>
+                    <select name="select-custom-1" id="select-custom-1" data-native-menu="false">
+                        <option value="alegre">Alegre</option>
+                        <option value="melancolico">Melancólico</option>
+                        <option value="enamorado">Enamorado</option>
+                        <option value="colera">Cólera</option>
+                        <option value="optimista">Optimista</option>
+                        <option value="esperanzado">Esperanzado</option>
+                        <option value="sonador">Soñador</option>
+                    </select>
+                </div>
+
+                <button onclick="generateMsg();" class="ui-btn ui-icon-comment ui-btn-icon-right" data-theme="a" >Generar</button>
+                <br>
+
+                <h2>Mensaje:</h2>
+                <textarea name="textarea-1" id="textarea-1" readonly="readonly" placeholder="Presione el boton para generar una cita." onclick="select_all();"></textarea>
+
+                <div id="img_container">
+                    <div class="tweetBtn" id="tweetBtn">
+                        <a class="twitter-share-button" data-text="　" data-size="large" data-count="none">Tweet</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="js/widget.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                    </div>
+                    <img src="images/tweet.png" class="tweet"></img>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $("#textarea-1").keyup (function(ev) {
+            ev.preventDefault();
+
+            // Remove existing iframe
+            $("#tweetBtn iframe").remove();
+
+            // Generate new markup
+            var tweetBtn = $("<a></a>")
+            .addClass("twitter-share-button")
+            .attr("data-size", "large")
+            .attr("data-count", "none")
+            .attr("data-text", $("#textarea-1").val());
+
+            $('#tweetBtn').append(tweetBtn);
+            twttr.widgets.load();
+        });
+    </script>
+
+
+    <script type="text/javascript">
+    function generateMsg() {
+        var selected = $("#select-custom-1").val();
+
+        switch (selected) {
+
+            case "alegre":
+                var Alegre = 
+                ["“Al Señor le agrada que le sirvan con gusto, porque haciéndolo con alegría y de corazón, se ama más a Dios” - San Juan Bosco",
+                "“Alegría y amor son las alas de las grandes compañías” - Goethe",
+                "“Alegría, bondad y humildad son las raíces de la felicidad” - Juan",
+                "“Alegría, estudio y piedad: es el mejor programa para hacerte feliz y que más beneficiará tu alma” - San Juan Bosco",
+                "“Alegría, oración y comunión son el secreto de nuestra resistencia” - San Juan Bosco",
+                "“Bueno es tener la alegría en casa y no haber menester de buscarla fuera” - Johann Wolfgang Goethe",
+                "“Buscas la alegría en torno a ti y en el mundo. ¿No sabes que sólo nace en el fondo de tu corazón?” -  Rabindranath Tagore",
+                "“Cada minuto que estás enfadado pierdes sesenta segundos de felicidad” -  Ralph Waldo Emerson",
+                "“Cada vez que das, muestra una cara alegre, siéntete feliz de presentar tus diezmos” - Libro de Eclesiástico",
+                "“Con dinero podemos comprar lujos, pero no alegría” - Anónimo",
+                "“Conviene reír sin esperar a ser dichoso, no vaya ser que la muerte nos sorprenda sin haber reído” - Jean de La Bruyére",
+                "“Convierte la alegría en fiel compañera de tu vida” - Autor desconocido",
+                "“Crecerás el día en que verdaderamente te rías por primera vez de ti mismo” - Ethel Barrymore",
+                "“Cuando estuvieres alegre, no sea con risas demasiadas, sino con alegría humilde, modesta, afable y edificativa” - Santa Teresa de Jesús",
+                "“Cuando saltes de alegría, cuida de que nadie te quite la tierra debajo de los pies” - Stanislaw Jerzy Lec",
+                "“Cuando se hace el bien es preciso hacerlo con alegría” - Autor desconocido",
+                "“De cuantos bienes Dios nos envía, el más estimable es la alegría” - Royo Marín",
+                "“De cuantos bienes Dios nos envía, el más estimable es la alegría” - Royo Marín",
+                "“De los tiempos el que más corre es el alegre” - Virgilio",
+                "“Dios favorece al hombre alegre” - San Juan Bosco",
+                "“El alma humana se revela profundamente no sólo en el dolor sino también en la alegría” - Adolfo Kolping",
+                "“El amor produce en el hombre la perfecta alegría. En efecto, sólo disfruta de veras el que vive en caridad” - Santo Tomás",
+                "“El bosque sería muy triste si sólo cantasen los pájaros que mejor lo hacen”  - Rabindranath Tagore",
+                "“El corazón alegre mejora la salud” - Proverbios, 17:22",
+                "“El demonio no puede resistir a la gente alegre” - San Juan Bosco",
+                "“El fundamento verdadero de la felicidad: la enseñanza” -  Simón Bolívar",
+                "“El hombre feliz es aquel que siendo rey o campesino, encuentra paz en su hogar” - Johann Wolfgang Goethe",
+                "“El hombre se complace en enumerar sus pesares, pero no enumera sus alegrías” - Fiodor Dostoievski",
+                "“El humor se tiene o no se tiene y es la manera de ver las cosas con claridad” - Antonio Mingote",
+                "“El modo mejor de alegrarte a tí mismo es tratar de alegrar a otro” - Mark Twain",
+                "“El mundo está lleno de pequeñas alegrías; el arte consiste en saber distinguirlas” - Li-Tai-Po",
+                "“El mundo no puede dar alegrías tan grandes como son las que quita” - Lord Byron",
+                "“El que no encuentra la alegría dentro de su casa, ¿Dónde la irá a buscar?” - Autor desconocido",
+                "“El que se alegra a causa de un niño, se alegra a causa de la vida” - Phil Bosmans",
+                "“Entre las desventuras, ninguna hay mayor que la falta de alegría” - Francisco Quevedo y Villegas.",
+                "“Eres infeliz porque no te das cuentas que eres feliz” -  Fëdor Mikhailovich Dostoyevski",
+                "“Es imposible pretender cosas extraordinarias de la juventud, ya es bastante que sean buenos y que estén siempre alegres” - San Juan Bosco",
+                "“Estando siempre alegres, ni cuenta nos daremos qué pronto pasa el tiempo” - San Juan Bosco",
+                "“Gran ciencia es ser feliz, engendrar la alegría, porque sin ella, toda existencia es baldía” - Ramón Pérez de Ayala",
+                "“Hay alegría de ser sano y justo; pero hay, sobre todo, la inmensa alegría de servir” - Gabriela  Mistral",
+                "“Hay quienes dan con alegría y esa alegría es su premio” - Khalil Gibran",
+                "“Hazles comprender que no tienen en el mundo otro deber que la alegría” - Paul Claudel",
+                "“He aquí una de las cosas en que consiste el amor: compartir nuestro gozo con la gente” - Leo Buscaglia",
+                "“Justa causa de alegría es ver feliz a un amigo” - Lucio Anneo Séneca",
+                "“La alegría compartida es una alegría doble” - Dewey",
+                "“La alegría de hacer bien está en sembrar, no en recoger” - Jacinto Benavente",
+                "“La alegría de un hipócrita sólo dura un momento” - Job",
+                "“La alegría de ver y entender es el más perfecto don de la naturaleza” - Albert Einstein",
+                "“La alegría de vivir es el más grande poder cósmico”  - Theilhard de Chardin",
+                "“La alegría de vivir es el más grande poder cósmico” - Teilhard de Chardin",
+                "“La alegría es cardio-saludable para el que la tiene y para los que están cerca de él”  - Juan",
+                "“La alegría es el ingrediente principal en el compuesto de la salud” - A. Murphy",
+                "“La alegría es el néctar de la vida” - Abel Pérez Rojas",
+                "“La alegría es la piedra filosofal que todo lo convierte en oro” - Benjamin Franklin",
+                "“La alegría es pena que se disimula; sobre la tierra no hay más que dolores” - Selma Lagerlof",
+                "“La alegría es, ante todo, fomento de la salud” - Joseph Addison",
+                "“La alegría ha sido llamada el buen tiempo del corazón” - Samuel Smiles",
+                "“La alegría más grande es la inesperada” - Sófocles",
+                "“La alegría no es más que la máscara de la tristeza” - Ralph Waldo Emerson",
+                "“La alegría produce buenas historias” - Jean Luc Goddard",
+                "“La alegría prolonga la vida y trae salud” - Nicholas Udall",
+                "“La alegría se encuentra en el fondo de todas las cosas, pero a cada uno le corresponde extraerla” - Marco Aurelio",
+                "“La alegría, cuanto más se gasta más queda” - Ralph Waldo Emerson",
+                "“La felicidad consiste en hacer el bien”- Aristóteles",
+                "“La felicidad consiste en poner de acuerdo tus pensamientos, tus palabras y tus hechos” - Mahatma Gandhi",
+                "“La felicidad del hombre se encuentra en la contemplación de la verdad”-  Santo Tomás de Aquino",
+                "“La felicidad es una bendición, pero generalmente es también una conquista” - Paulo Coelho",
+                "“La felicidad ininterrumpida aburre: debe tener alternativas” - Molière",
+                "“La felicidad no se produce por grandes golpes de fortuna, sino por pequeñas ventajas que ocurren todos los días” - Benjamín Franklin",
+                "“La juventud es el paraíso de la vida, la alegría es la juventud eterna del espíritu” - Ippolito Nievo",
+                "“La mitad de la alegría reside en hablar de ella” - Proverbio persa",
+                "“La raíz principal de la alegría se alimenta de la paz interior” - Juan",
+                "“La sencillez es la puerta de la alegría” - Juan",
+                "“La verdadera alegría nace de la buena conciencia” - Erasmo de Rotterdam",
+                "“Los alegres curan” - François Rabelais",
+                "“Los hombres olvidan siempre que la felicidad humana es una disposición de la mente y no una condición de las circunstancias” - John Locke",
+                "“Los pesimistas son sólo espectadores: son los optimistas los que transforman el mundo” - Cuzzet",
+                "“Mi risa es mi espada, y mi alegría, mi escudo” - Martín Lutero",
+                "“No hay medicina que cure lo que no cura la felicidad” - Gabriel García Márquez",
+                "“No hay mejor alegría que la que mejor alegría difunde entre los demás” - Henry F. Hoar",
+                "“No perdáis tiempo en llorar el pasado ni  el porvenir. Los alegres son como flores que la lluvia mancha y el viento deshoja” - E. Gouncourt",
+                "“No se puede tratar con las cosas más serias de este mundo, a menos que uno comprenda las más divertidas” - Winston Churchill",
+                "“Nosotros queremos ser más felices que los demás, porque creemos que los demás son más felices de lo que son en realidad” - Montesquieu",
+                "“Para conocer la dicha hay que tener el valor de tragársela” - Charles Baudelaire",
+                "“Para lograr todo el valor de una alegría has de tener con quien repetirla” - Mark Twain",
+                "“Ser alegre en estos días es un acto de valentía” - Abel Pérez Rojas",
+                "“Si bien es cierto que las alegrías son cortas, tampoco nuestros pesares son muy largos” - Marqués de Vauvenargues",
+                "“Si deseas felicidad de los demás, sé compasivo. Si deseas tu propia felicidad, sé compasivo” - Dalai Lama",
+                "“Si exagerásemos nuestras alegrías, como hacemos con nuestras penas, nuestros problemas perderían importancia” - Anatole France",
+                "“Si quieres comprender la palabra felicidad, tienes que entenderla como recompensa y no como fin” - Antoine de Saint-Exupery",
+                "“Si tenéis el hábito de tomar las cosas con alegría, rara vez os encontraréis en circunstancias difíciles” - Robert Baden-Powell",
+                "“Solo deseo una alegría perpetua” - Vane",
+                "“Ten buena conciencia y tendrás siempre alegría. Si alguna alegría hay en el mundo la tiene el hombre de corazón puro” - Thomas De Kempis",
+                "“Todo les sale bien a las personas de carácter dulce y alegre” - Voltaire",
+                "“Un corazón alegre hace bien al cuerpo, un espíritu abatido seca los huesos” - Proverbios, 17:22",
+                "“Un corazón alegre le hace mucho bien al cuerpo” - Proverbios,  17:22",
+                "“Un joven sin alegría y sin esperanza no es un joven auténtico, sino un hombre envejecido antes de tiempo” - Juan Pablo II",
+                "“Un santo triste es un triste santo” - San Francisco de Sales",
+                "“Una persona alegre es un trocito de cielo en la tierra” - Juan",
+                "“Vuestra alegría es vuestra tristeza sin máscara” - Khalil Gibran"];
+            
+                var randomValue = Alegre[Math.floor(Math.random() * Alegre.length)];
+                break;
+
+            case "melancolico":
+                var Melancolico = 
+                ["“¡Melancolía, deja de secarme la vida y desnuda tu labio de mujer!” - César Vallejo",
+                "“¡Siendo de dos una tristeza, ya no es tristeza, es alegría!” - Francisco Villaespesa",
+                "“¿El lugar más solitario de la tierra? Vivir con un hombre que ya no amas” - Sally Brampton",
+                "“A penas puedo concebir un tipo de belleza en el que no hay melancolía” - Charles Baudelaire",
+                "“Cada suspiro es como un sorbo de vida del que uno se deshace” - Juan Rulfo",
+                "“Creo que todo ser humano tiene cierto nivel de melancolía en la vida y en general” - Sandra Bullock",
+                "“Cuando te sientes agobiado por la melancolía, lo mejor es salir y hacer algo amable por alguien” - Keble",
+                "“Cuidado con la tristeza. Es un vicio” - Gustave Flaubert",
+                "“Desechad tristezas y melancolías. La vida es amable, tiene pocos días y tan sólo ahora la hemos de gozar” - Federico García Lorca",
+                "“Dime amigo: ¿La vida es triste o soy triste yo?” - Amado Nervo",
+                "“Dulce le ríe, dulce la espía la hermosa de melancolía” - José María Arguedas",
+                "“El melancólico tiene la cara de Dios cuando nos mira” - Pisabarro",
+                "“En la desesperanza y en la melancolía de tu recuerdo, soria, mi corazón se abreva” - Antonio Machado",
+                "“En la sombra, lejos de la luz del día, la melancolía suspira sobre la cama triste, el dolor a su lado, y la migraña en su cabeza” - Alexander Pope",
+                "“Dice su padre que el tiempo es melancolía, y cuando se para lo llamamos eternidad” - San Juan De La Cruz",
+                "“Es una verdad melancólica que incluso los grandes hombres tienen sus relaciones pobres” - Charles Dickens",
+                "“Estoy muy triste y me siento más desgraciado de lo que puedo decir, y no sé hasta dónde he llegado... Siento tanta melancolía” - Vincent Van Gogh",
+                "“Hay una melancolía que nace de la grandeza” - Nicolas Chamfort",
+                "“La gente dice que las malas memorias pueden provocar un peor dolor, pero de hecho, son las buenas las que te conducen a la locura” - Anonimo",
+                "“La gente sin alma no tiene necesidad de melancolía” - Vladimir Odoevsky",
+                "“La melancolía debería ser desviada por todos los medios excepto la bebida” - Samuel Johnson",
+                "“La melancolía es el placer de estar triste” - Victor Hugo",
+                "“La melancolía es la tristeza que ha sido tomada de la luz” - Italo Calvino",
+                "“La melancolía es parte de la vida y una de sus experiencias más enriquecedoras; disfrútala porque no todos los días las tendrás” - Anonimo",
+                "“La melancolía es tan seductora como el éxtasis” - Mason Cooley",
+                "“La melancolía es un estado de ánimo situado entre el ombligo y la lágrima” - Juan Echanove",
+                "“La melancolía es un recuerdo que se ignora” - Gustave Flaubert",
+                "“La melancolía es una tristeza, un deseo sin nada de dolor, de la misma medida en que la neblina se parece a la lluvia” - H.Longfellow",
+                "“La melancolía no debería llorarse, porque si la sientes, tienes una experiencia que te hacen sentir, y sentir es vivir” - Anonimo",
+                "“La melancolía no es más que una recordación inconsciente” - Gustave Flaubert",
+                "“La melancolía y la tristeza son el comienzo de la duda, la duda es el comienzo de la desesperación” - Comte de Lautreamont",
+                " “La tristeza del alma puede matarte mucho más rápido que una bacteria” - John Ernst Steinbeck",
+                "“La tristeza, aunque esté siempre justificada, muchas veces sólo es pereza. Nada necesita menos esfuerzo que estar triste” - Séneca",
+                "“La vida es como un arcoíris. Necesitas tanto el sol como la lluvia para que aparezcan sus colores” - Autor desconocido",
+                "“Leyendo un libro, hallé un ejemplo de melancolía: Un hombre que callaba y sonreía, muriéndose de sed junto a una fuente” - José Angel Buesa",
+                "“Lo que algunas personas interpretan como melancolía, es en realidad serenidad” - David Guterson",
+                "“Los grandes hombres son siempre de una naturaleza originalmente melancólica” - Aristóteles",
+                "“Me piden lo profético que hay en mí, con melancolía y un golpe de objetos que llaman sin ser respondidos hay, y un movimiento sin tregua, y un nombre confuso” - Pablo Neruda",
+                "“Melancolía: manera romántica de estar triste” - Mario Quintana",
+                "“Mi única estrella ha muerto y mi laúd lleva el sol negro de la melancolía” - Gérard de Nerval",
+                "“Nada excepto una batalla perdida puede ser la mitad de melancólico que una batalla ganada” - Arthur Wellesley",
+                "“Ningún lugar en la vida es más triste que una cama vacía” - Gabriel García Márquez",
+                "“No hagas mejores amigos con un alma melancólica. Siempre llevan una pesada carga y tú debes llevar la mitad” - Francois Fenelon",
+                "“No hay algo así como la felicidad, solo menores matices de melancolía” - Robert Burton",
+                "“No hay melancolía sin memoria ni memoria sin melancolía” - Will Rogers",
+                "“No puedes evitar que el pájaro de la tristeza vuele sobre tu cabeza, pero sí puedes evitar que anide en tu cabellera” - Proverbio chino",
+                "“No tienes harmonía cuando todo el mundo canta la misma nota” - Doug Floyd",
+                "“Nunca pensé que en la felicidad hubiera tanta tristeza” - Mario Benedetti",
+                "“Oh melancolía, amante dichosa, siempre me arrebata tu placer” - Silvio Rodríguez",
+                "“Pregúntate a ti mismo si eres feliz y dejarás de serlo” - John Stuart Mill",
+                "“Primero, la compañía de los necios nos puede hacer sonreír, pero al final siempre sentimos melancolía” - Oliver Goldsmith",
+                "“Las tristezas no son para las bestias, sino para los hombres; pero si los hombres las sienten demasiado, se vuelven bestias” - M. Cervantes",
+                "“Si estuviese inmersa en una melancolía constante, no sería quien soy” - Elie Wiesel",
+                "“Si hubiese un infierno en la tierra, sería encontrado en el corazón de un hombre melancólico” - Robert Burton",
+                "“Si no usas tu sonrisa eres como un hombre con un millón de dólares en el banco y que no puede gastarlos” - Les Giblin",
+                "“Si piensas que siempre te va a ir bien, vives en otro mundo o tienes falta de experiencia” - Autor desconocido",
+                "“Si quieres dejar de sentir melancolía, levántate, sal y comienza a ver todas cosas bonitas que te ofrece la vida” - Autor desconocido",
+                "“Todos los cambios son más o menos teñidos con la melancolía porque lo que dejamos atrás es parte de nosotros mismos” - Amelia Barr",
+                "“Tristeza y melancolía no las quiero en casa mía” - Santa Teresa De Jesús",
+                "“Un solo ser nos falta y todo está despoblado” - Alphonse de Lamartine",
+                "“Una vejez cómoda es la recompensa a una juventud bien pasada” - Maurice Chevalier",
+                "“Usa tus estados de bajo ánimo para tu bien. Reflexiona sobre qué te hace sentir así. Si te hace daño, evítalo en el futuro”  - Autor desconocido",
+                "“Y en este titubeo de aliento y agonía, cargo lleno de penas lo que apenas soporto. ¿No oyes caer las gotas de mi melancolía” - Rubén Darío",
+                "“Yo creo que la melancolía es el estado de locura del arte, de revelación e inspiración. Es Hamlet con la calavera en la mano” - A. Duclos"];
+
+                var randomValue = Melancolico[Math.floor(Math.random() * Melancolico.length)];
+                break;
+
+            case "enamorado":
+                var Enamorado =
+                ["“¿Cómo no enamorarse de una mujer que brillaba, centelleaba, relampagueaba de tal manera?” - Celia Del Palacio",
+                "“¿Cuando llegan a adquirir la más completa posesión de sí mismos, sino cuando se proclaman perdidos el uno en el otro?” - Pierre Teilhard ",
+                "“¿Qué es una cita? un pretexto para enamorarse... y entonces ¿qué es el amor? una palabra que un poeta inventó” - Anónimo",
+                "“A fuerza de hablar de amor, uno llega a enamorarse. Nada tan fácil. Esta es la pasión más natural del hombre” - Blaise Pascal",
+                "“Ah, me resisto, más me tienes toda, tú, que nunca serás del todo mío” - Alfonsina Storni",
+                "“Amantes del mundo: a veces es más hermoso recordar que vivir” - Chavela Vargas",
+                "“Amantes viejos, sobran las palabras para entendernos. Todo lo hemos dicho y hasta nuestro silencio es un dulce silencio repetido” - César Brañas",
+                "“Amantes, dementes” - Plauto",
+                "“Amor no es enamorarse, es estar enamorado; porque el amor no” - Anónimo",
+                "“Aparta un amor viejo con un amor nuevo, como un clavo saca a otro clavo” - Marco Tulio Cicerón",
+                "“Aunque los amantes se pierdan el amor no” - Dylan Thomas",
+                "“Cuando se habla de estar enamorado como un loco se exagera; en general, se está enamorado como un tonto” - Noel Clarasó",
+                "“Cuanto más me gustaba alguien, más tiempo desaparecía. Hasta que me enamoré apasionadamente y ya no volví a aparecer” - Mathias Malzieu",
+                "“Déjame morderte el alma para saber que sólo es mía” - Xavier Velasco",
+                "“Dos amantes sensuales no son dos amigos, son más bien dos enemigos, estrechamente vinculados entre sí” - Henri Barbusse",
+                "“Dos hombres hay en el mundo que he encontrado en mi camino; el primero es a quien amo, y el segundo, quien me ama” - Tove Ditlevsen",
+                "“El amor tiene la virtud de desnudar no a los dos amantes uno frente al otro, sino a cada uno delante de sí” - Cesare Pavese",
+                "“El amor, como ciego que es, impide a los amantes ver las divertidas tonterías que cometen” - William Shakespeare",
+                "“Durante la etapa del enamoramiento debemos evitar hacer locuras grandes como casarnos” - Walter Riso",
+                "“El que no tiene celos no está enamorado” - San Agustín",
+                "“El que vive enamorado delira, a menudo se lamenta, siempre suspira, y no habla sino de morir” - Pietro Metastasio",
+                "“En los inicios de un amor los amantes hablan del futuro, en sus postrimerías, del pasado” - André Maurois",
+                "“Enamorarse es comer un chicle y querer seguir masticándolo aunque haya perdido el sabor” - Anónimo",
+                "“Enamorarse es exagerar enormemente la diferencia entre una mujer y otra” - George Bernard Shaw",
+                "“Enamorarse es sentirse encantado por algo, y algo sólo puede encantar si es o parece ser perfección” - José Ortega",
+                "“Enamorarse no es amar. Puede uno enamorarse y odiar” - Anonimo",
+                "“Enamorarse no es lo difícil, pero sí acertar a expresar ese estado” - Louis Charles Alfred De Musset",
+                "“Entre dos amantes, la prueba de que uno ama demasiado dispensa para siempre, a quien la recibe, de amar lo suficiente” - Will Rogers",
+                "“Es quizás lo peor que hay en la vida: no saber ya enamorarse” - Frédéric Beigbeder",
+                "“Ese hombre ha sido uno de mis más asiduos y generosos amantes temporales” - Mata Hari",
+                "“Esta sociedad nos da facilidades para hacer el amor, pero no para enamorarnos” - Antonio Gala",
+                "“Estar totalmente enamorado, hay que tener plena conciencia de que uno también es querido, que uno también inspira amor” - M. Benedetti",
+                "“Estoy descorazonado... Será que hace mucho tiempo se lo di a mi mujer. Y no quiero pedírselo de vuelta” - Benito Taibo",
+                "“Hay que enamorarse para amar, pero enamorarse no es lo mismo que amar” - Gayle Forman",
+                "“Hay que saber que no existe país sobre la tierra donde el amor no haya convertido a los amantes en poetas” - Voltaire",
+                "“Hay quien ha venido al mundo para enamorarse de una sola mujer y, consecuentemente, no es probable que tropiece con ella” - José Ortega",
+                "“La belleza que atrae rara vez coincide con la belleza que enamora” - José Ortega",
+                "“La gente debe enamorarse con los ojos cerrados. Sólo cierra los ojos. No veas, y será mágico” - Andy Warhol",
+                "“Las riñas de los amantes renuevan el amor” - Terencio",
+                "“Lo mejor es enamorarse, lo peor es desenamorarse. Pero todo ello es mejor que nunca haber estado enamorado” - Maya Angelou",
+                "“Los amantes no se encuentran finalmente en algún lugar; están dentro el uno del otro todo el tiempo” - Rumi",
+                "“Los amantes son como el atardecer y el amanecer: hay ese tipo de cosas todos los días pero muy rara vez los ven” - Samuel Butler",
+                "“Los desdenes de los enamorados reavivan el amor” - Terencio",
+                "“Los que más han amado le han hecho siempre el máximo daño: han exigido de él lo imposible, como todos los amantes” - Friedrich Nietzsche",
+                "“Enamorarse de la práctica sin la teoría son como los pilotos sin timón ni brújula, nunca podrán saber a dónde van” - Leonardo Da Vinci",
+                "“Muchos hombres se enamoran de un hoyuelo y cometen el error de casarse con la chica entera” - Stephen Leacock",
+                "“No hay distancia que pueda mantener a los amantes separados mucho tiempo” - George Washington",
+                "“Amante, nunca olvides que vienes de una larga lista de buscadores de la verdad” - Hunter S. Thompson",
+                "“Para un buen matrimonio hay que enamorarse muchas veces, siempre de la misma persona” - Mignon McLaughlin",
+                "“Porque, aunque nunca he querido amantes, siempre he querido amar y ser amado” - David Levithan",
+                "“Quítenle a dos amantes el gusto de lastimar y su aventura se tornara más desabrida que un matrimonio” - Enrique Serna",
+                "“Si los mares se alejan, ¿Por qué no habrían de hacerlo los amantes?” - Michael Ondaatje",
+                "“Te estás muriendo de soledad, sueñas con un gran amor y nada te da más miedo que enamorarte” - Marc Levy",
+                "“Te prometí contarte cómo se enamora uno” - Michael Ondaatje",
+                "“En este planeta viven más de siete billones personas. Te enamoras de una persona y no la cambias por nadie en el mundo” - Jostein Gaarder",
+                "“Un hombre enamorado está incompleto hasta que está casado; entonces está acabado” - Zsa Zsa Gabor",
+                "“Un loco enamorado sería capaz de hacer fuegos artificiales con el sol, la luna y las estrellas, para recuperar a su amada” - Goethe",
+                "“Uno debería estar siempre enamorado. Por eso jamás deberíamos casarnos” - Oscar Wilde",
+                "“Uno no se enamoró nunca, y ése fue su infierno. Otro, sí, y ésa fue su condena” - Robert Burton",
+                "“Volví a enamorarme de ti mientras estabas lejos” - Alice Sebold",
+                "“Y así dos orillas tu corazón y el mío, pues, aunque las separa la corriente de un río, por debajo del río se unen secretamente” - José Angel Buesa",
+                "“Y los amantes saben, que sin querer siquiera hay un amor que crece como una enredadera” - José Angel Buesa",
+                "“Y para los amantes su amor desesperado podrá ser un delito... Pero nunca un pecado” - José Angel Buesa"];
+
+                var randomValue = Enamorado[Math.floor(Math.random() * Enamorado.length)];
+                break;
+
+            case "colera":
+                var Colera = 
+                ["“¡Oh desprecio, oh rencor, oh furia, oh rabia! La vida está de soles diademada…” - Porfirio Barba Jacob",
+                "“¡Qué tristeza, qué angustia y qué cólera me produce este aislamiento que uno sufre por el mero hecho de ser latino!” - Rosa Chacel",
+                "“¿No nos lastiman aquéllos a quienes amamos y respetamos más que aquéllos a quienes odiamos y tememos?” - John Katzenbach",
+                "“Amo la rabia de perderte, tu ausencia en el caballo de los días, tu sombra y la idea de tu sombra” - César Moro",
+                "“Bien, tú eliges. ¿Estarás a su lado en esta hora de necesidad, o prefieres llevarte tu ira a la tumba?” - Steve Alten",
+                "“Contra la ira, dilación” - Séneca",
+                "“Cuando la cólera sale de madre, no la retiene lengua de padre” - Anónimo",
+                "“El exceso de cólera engendra la locura” - Epicteto de Frigia",
+                "“El mérito autentico es, pudiendo hacer daño, no hacerlo” - Siro",
+                "“El odio es la cólera de los débiles” - Alphonse Daudet",
+                "“El pasado no puede hacerte daño, no a menos que se lo permitas” - Alan Moore",
+                "“El perdón es sólo empujar a un lado continuamente los recuerdos amargos, hasta que el tiempo alivia la herida y la rabia” - Veronica Roth",
+                "“El que airado procura hacer daño, no se guarda del que le puede suceder” - Séneca",
+                "“El que domina su cólera domina su peor enemigo” - Confucio",
+                "“Ella veía la ira acumulada, pero estaba convencida de que existía igual cantidad de amor si ella hubiera tenido la capacidad de activarlo…” - Camilla Läckberg",
+                "“En ninguno es la ira más peligrosa que en el que a otros castiga” - Séneca",
+                "“Es sabio dirigir tu cólera hacia los problemas, no hacia la gente; para centrar tus energías en las respuestas y no en excusas” - W. Ward",
+                "“Habéis sido esclavos durante mucho tiempo, estado sumidos en la oscuridad, la luz del sol hace daño a los ojos” - L. García",
+                "“Herir a un oponente es herirte a ti mismo, el arte de la paz es controlar la agresión sin producir daños” - Morihei Ueshiba",
+                "“La cólera da ingenio a los hombres apagados, pero los deja en la pobreza” - Isabel I",
+                "“La cólera de los imbéciles devasta hoy la tierra” - Georges Bernanos",
+                "“La cólera es orgullosa y necesita palabras altaneras; el abatimiento se expresa con términos menos altivos” - Nicolás Boileau",
+                "“La cólera es una ráfaga de viento que apaga la lámpara de la inteligencia” - Robert Ingersoll",
+                "“La cólera es una ráfaga de viento que apaga la lámpara de la inteligencia” - Robert Green Ingersoll",
+                "“La cólera no nos permite saber lo que hacemos y menos aún lo que decimos” - Arthur Schopenhauer",
+                "“La cólera refleja la debilidad, así como la aflicción: ambas son heridas, capitulaciones” - Laurent Gounelle",
+                "“La experiencia me ha enseñado que la mejor forma de protegerte es hacer creer a tus enemigos que no pueden hacerte daño” - Patrick Rothfuss",
+                "“La furia con que el mundo actual busca el placer prueba que carece de él” - Ángel Ganivet",
+                "“La furia fundida con la frialdad...” - John Katzenbach",
+                "“La ira altera la visión, envenena la sangre: es la causa de enfermedades y de decisiones que conducen al desastre” - Florence Scovel",
+                "“La ira es nuestro enemigo ya que se haya en nuestra mente, hiere y destruye, aniquila nuestras propias fuerzas y energías” - Dalai Lama",
+                "“La ira es una locura de corta duración” - Quinto Horacio Flaco",
+                "“La ira impulsiva siempre se mete en problemas” - Rick Warren",
+                "“La ira nace del temor, y es un sentimiento de debilidad o inferioridad; si posee coraje o determinación, cada vez será menor” - Dalai Lama",
+                "“La ira, si no es refrenada, es frecuentemente más dañina para nosotros que la injuria que la provoca” - Séneca",
+                "“La perfección del que imparte órdenes es ser pacífico; del que combate, carecer de cólera; del que quiere vencer, no luchar…” - Lao-tsé",
+                "“La rabia en los seres humanos con frecuencia es una de las trampas del enemigo” - Gabriel García Márquez",
+                "“La rabia es muy perjudicial para todo el mundo, pero sobre todo para el hombre que la experimenta” - León Tolstói",
+                "“La razón es quizás el instrumento que te puede hacer más feliz y a su vez hacerte más daño” - Juan Lobillo",
+                "“La verdad es como el agua fría, que solamente hace daño a los dientes estropeados” - Nicolae Iorga",
+                "“Las guerras y los arranques de cólera son los recursos de la ignorancia” - Joseph Campbell",
+                "“Las palabras son médicos de la enfermedad de la cólera” - Esquilo",
+                "“Lo que empieza en cólera acaba en vergüenza” - Benjamin Franklin",
+                "“Lo que empieza en cólera acaba en vergüenza” - Benjamin Franklin",
+                "“Los daños ya causados eran irremediables, pero al menos no se volverían a cometer” - Ursula K Le Guin",
+                "“Los recuerdos nos hacen tanto daño tal vez porque los años agranden la emoción” - Homero Manzi",
+                "“Los recuerdos olvidados hacen daño” - Gonzalo Torrente Ballester",
+                "“Los tigres de la cólera son más sabios que los caballos del saber” - William Blake",
+                "“Menores iras, no menores lides” - Marco Anneo Lucano",    
+                "“No acometas obra alguna con la furia de la pasión; equivale a hacerse a la mar en plena borrasca” - Thomas Fuller",
+                "“No creo que tu capacidad de lucha tenga nada que ver con lo grande que seas. Tiene que ver con cuánta rabia hay en ti” - Amy Winehouse",
+                "“No os entreguéis por demasiado a la ira; una ira prolongada engendra odio” - Ovidio",
+                "“No se puede dedicar el alma a acumular intentos, pesa más la rabia que el cemento” - Shakira",
+                "“No temas que te hagan daño mis fieras desolaciones: como Pedro el Ermitaño, ¡jugarás como los leones!” - Julio Herrera y Reissig",
+                "“Otra cosa en esta sociedad es lo que te hace daño... Por eso necesitas todas esas porquerías” - Charles Bukowski",
+                "“Para la cólera y el amor todo lo que se aplaza se pierde” - Pierre Augustin de Beaumarchais",
+                "“Para templar el daño, consejo muda el prudente” - Pedro Calderón De La Barca",
+                "“Pero la ira vuelve sordo, y la desesperación, ciego” - Laurent Gounelle",
+                "“Recuerdo que el amor era una blanda furia no expresable en palabras” - Eduardo Lizalde",
+                "“Sabes que siempre trataré de evitar cualquier cosa que te haga daño” - Diane Setterfield",
+                "“Si hay cosas que no quiero contarte no es por egoísmo, es que no quiero hacerte daño” - Joe Hill",
+                "“Si me muriera mañana no me importaría el daño. Porque estoy seguro de haber hecho todo” - Freddie Mercury",
+                "“Si tienes miedo de hacerte daño, aumentas las probabilidades de que eso mismo suceda...” - Mathias Malzieu",
+                "“Somos más sinceros cuando estamos iracundos que cuando estamos tranquilos” - Cicerón",
+                "“Ten el valor de la astucia que frená la cólera y espera el momento propio para desencadenarla.” -  Gengis Kan",
+                "“Tienen que darse cuenta que el miedo no les puede hacer más daño que un sueño” - William Golding",
+                "“Todas las cosas llegan, le hacen a uno daño y se van” - Amado Nervo",
+                "“Todos los hombres sabios temen tres cosas: la tormenta en el mar, la noche sin luna y la ira de un hombre apacible” - Patrick Rothfuss",
+                "“Yo estaba temblando de rabia por haberme lan¬zado a hablar, furioso contra mí mismo por haber mostrado mi secreto” - Juan Carlos Onetti",
+                "“Yo solo, ¡Es increíble lo poco que puede hacer un hombre solo! Robar un poco, hacer un poco de daño, y ahí se acaba todo” - Herbert George Wells",
+                "“Yo también he sufrido, y entonces me hubiera gustado tener a mano alguien a quien hablar. Es malo tragárselo todo” - Gonzalo Torrente Ballesters"];
+
+                var randomValue = Colera[Math.floor(Math.random() * Colera.length)];
+                break;
+
+            case "optimista":
+                var Optimista = 
+                ["“¡Cree en ti! ¡Ten fe en tus capacidades! Si no tienes confianza en tus propios poderes, no puedes tener éxito o ser feliz.” - Norman Peale",
+                "“¿La confianza debe ganarse? ¿O es simplemente una cuestión de fe?” - Nicholas Sparks",
+                "“¿Qué es el optimismo? Sostener lo bien que está todo cuando manifiestamente todo está muy mal” - Augusto Roa Bastos",
+                "“Busquemos la verdad, con la confianza de un niño, y la voluntad de un iniciado” - Helena Blavatsky",
+                "“Como el contagio de una enfermedad, el contagio de la confianza puede generar más confianza” - Marianne Moore",
+                "“Como es nuestra confianza, es nuestra capacidad” - William Hazlitt",
+                "“Confiamos porque somos precavidos” - Epicteto",
+                "“Confianza es el sentimiento de poder creer a una persona incluso cuando sabemos que mentiríamos en su lugar” - Henry Louis Mencken",
+                "“Confianza nos da coraje y amplía nuestros horizontes, asumimos mayores riesgos y llegamos mucho más lejos de lo que pensamos” - Jack Welch",
+                "“Cuando te vaya bien llévame contigo, cuando te vaya mal no me defraudes” - Bob Marley",
+                "“Cuanto más igualitaria es una sociedad, más confianza reina en ella” - Tony Judt",
+                "“El optimismo es esencial para el progreso verdadero” - Nicholas Murray Butler",
+                "“El optimismo es la base del valor” - sNicholas Murray Butler",
+                "“El optimismo es la fe que conduce al logro; nada puede realizarse sin esperanza” - Helen Keller",
+                "“El optimismo es una fuente de riqueza” - Manuel Vicent",
+                "“El optimismo soluciona la mitad de cada problema” - Jorge González Moore",
+                "“El que no cree en sí mismo miente siempre” - Friedrich Nietzsche",
+                "“Elija ser positivo. Usted tiene esa opción, es el dueño de su actitud. Elija ser positivo, constructivo” - Bruce Lee",
+                "“Fe, alegría, confianza; pero no la sandez de cerrar los ojos a la realidad” - San Josemaría Escrivá De Balaguer",
+                "“Generalmente ganamos la confianza de aquéllos en quienes ponemos la nuestra” - Tito Livio",
+                "“Hace falta hablar más a fondo para convertir el interés en confianza” - Kobo Abe",
+                "“La confianza debería ser más que cualquier expectativa y anticiparse al futuro como certeza” - Francisco Garzón Céspedes",
+                "“La confianza en sí mismo es el primer secreto del éxito” - Ralph Waldo Emerson",
+                "“La confianza en sí mismo es el requisito para las grandes conquistas” - Ben Jonson",
+                "“La confianza es fruto de una relación en la que sabes que eres amado” - William Paul Young",
+                "“La confianza es la tranquilidad con que la mariposa se aposenta encima de un cocodrilo” - José Víctor Martínez Gil",
+                "“La confianza está muy ligada a lo que se denomina autoeficacia, el juicio positivo de nuestra capacidad de actuar” - Daniel Goleman",
+                "“La confianza no es otra cosa que confianza” - José Víctor Martínez Gil",
+                "“La confianza resplandece como las estrellas, poderosa y centelleante, iluminando a su alrededor toda la oscuridad” - Annabel Pitcher",
+                "“La confianza sólo se pierde una vez” - Nicolae Iorga",
+                "“La libertad y la seguridad no se encuentran tanto en lo que tenemos, sino en lo que podemos crear mediante la confianza” - Robert Kiyosaki",
+                "“La razón por la que todos pensamos tan bien de los demás es porque tenemos miedo de nosotros mismos” - Oscar Wilde",
+                "“Los listos, si te creen, te considerarán digno de confianza; si no te creen, te tomarán por listo” - Walter Serner",
+                "“Mantén un profundo optimismo. Inclínate hacia tu Meta futura. Tu Meta no te fallará, y tú no le fallarás a tu Meta” - Sri Chinmoy",
+                "“Nada vale más que el hecho de que te acepten una idea tuya y se lleve a cabo. Te da muchísima confianza” - Robert De Niro",
+                "“Raramente confiaremos en alguien que es mejor que nosotros” - Albert Camus",
+                "“Se cortés con todos, pero con pocos íntimo y cuida a quién le das tu confianza” - George Washington",
+                "“Se debe tener confianza en uno mismo y esa confianza debe estar basada en la realidad” - Bobby Fischer",
+                "“Si no puedo cruzar una puerta, cruzaré otra u otra puerta. Algo maravilloso vendrá, no importa lo oscuro que esté el presente” - R. Tagore",
+                "“Si uno quiere despertar confianza, debe ser digno de confianza” - Stephen Covey",
+                "“Siempre es mejor actuar con confianza, no importa si es poca” - Lillian Hellman",
+                "“Sólo los líderes capaces de inspirar confianza, pueden mantener a todos centrados en las tareas importantes” - Warren Bennis",
+                "“Ten fe en el propio esfuerzo y en la propia confianza. Con el poder de los pensamientos puedes determinar tu destino” - Swami Sivananda",
+                "“Tengo una gran fe en los tontos; confianza en sí mismo lo llaman mis amigos” - Edgar Allan Poe",
+                "“Todos los imperios no son más que el poder en la confianza” - John Dryden",
+                "“Una vez que sientes una confianza, haces lo primero que se te ocurre y todo sale bien” - Orhan Pamuk",
+                "“Uno mira al presente con todas sus lágrimas y nostalgias, otro indaga el futuro con todas las auroras” - Joaquim Machado de Assis",
+                "En cuanto a nosotros: debemos descentrar nuestras mentes de nosotros mismos; debemos inhumanizar un poco nuestra mirada, y tener la confianza de la roca y el océano de los que fuimos hechos.",
+                "Robinson Jeffers"];
+
+                var randomValue = Optimista[Math.floor(Math.random() * Optimista.length)];
+                break;
+
+            case "esperanzado":
+                var Esperanzado = 
+                ["“La esperanza es el sueño de los que están despiertos” - Carlomagno",
+                "“La esperanza es como el sol, arroja todas las sombras detrás de nosotros” - Samuel Smiles",
+                "“La esperanza es el único bien común a todos los hombres; los que lo han perdido todo, la poseen aún” - Tales De Mileto",
+                "“Mientras hay vida, hay esperanza” - Teócrito",
+                "“La esperanza es una cosa buena, quizá la mejor de todas, y las cosas buenas nunca mueren” -  Stephen King",
+                "“Tener esperanza significa estar listo en todo momento para lo que todavía no nace” - Erich Fromm",
+                "“Y más que cualquier dios, es creadora la esperanza del hombre” - Jorge Debravo",
+                "“La desesperanza está fundada en lo que sabemos, que es nada. Y la esperanza sobre lo que ignoramos, que es todo” - Maurice Maeterlinck",
+                "“Necesitamos la esperanza para que nuestra alegría sea perfecta” - Pierre Teilhard De Chardin",
+                "“Donde no hay esperanza no puede haber esfuerzo” - Ben Jonson",
+                "“La esperanza es un empréstito que se le hace a la felicidad” - Antoine de Rivarol",
+                "“La esperanza prospera aún bajo las condiciones más inadecuadas” - Alejandro Dolina",
+                "“Oh, amada esperanza, aquel día sabremos, también, que eres la vida y eres la nada” - Cesare Pavese",
+                "“No me apena dejaros. Con vosotros queda mi esperanza” - Otto René Castillo",
+                "“La esperanza es muy importante porque puede hacer el momento presente más fácil de soportar” - Thich Nhat Hanh",
+                "“La esperanza es un riesgo que hay que correr” - Georges Bernanos",
+                "“Mi corazón: tu nido. Muerde en él, esperanza” - Ángel González",
+                "“Si ayudo a una sola persona a tener esperanza, no habré vivido en vano” - Martin Luther King",
+                "“Lámparas que se apagan, esperanzas que se encienden” - Omar Khayyam",
+                "“No es el sufrimiento, sino la esperanza de cosas mejores lo que incita las rebeliones” - Eric Hoffer",
+                "“Porque a mí me podrían arrancar el recuerdo, pero no la esperanza” - Jorge Debravo",
+                "“La esperanza de una felicidad eterna e incomprensible en otro mundo, es cosa que también lleva consigo el placer constante” - John Locke",
+                "“Los vuelos naturales del espíritu humano no van de placer a placer sino de una esperanza a otra” - Ben Jonson",
+                "“Las esperanzas se encadenan” - Séneca",
+                "“Es un error no buscar esperanzas fuera de uno mismo” - Arthur Miller",
+                "“La esperanza es el sentimiento que le hace sentir que lo que usted tiene no es permanente” - Jean Kerr",
+                "“¡Me dais la muerte y queréis que yo viva! ¡Destruís mi esperanza y, al mismo tiempo, la reanimáis! No, no moriré...” - Marqués De Sade",
+                "“Eso era todo lo que un hombre necesitaba: esperanza. Era la falta de esperanza lo que hundía a un hombre” - Charles Bukowski",
+                "“Me duele como a ti, pero tengo menos miedo de la muerte y más esperanza en la vida” - Isabel Allende",
+                "“El amor es un trapecio de la esperanza” - Francisco Garzón Céspedes",
+                "“Sin esperanza se encuentra lo inesperado” - Heráclito",
+                "“Mi esperanza es dejar el mundo un poco mejor que cuando llegué aquí” - Jim Henson",
+                "“De ahora en adelante, esperanza. El camino no existe. Por esto lo construyo mientras lo hago” - Ko Un",
+                "“Sólo gracias a aquellos sin esperanza nos es dada la esperanza” - Herbert Marcuse",
+                "“No creo en la esperanza sin trabajo. Creo que solo puedes tener esperanza cuando has trabajado realmente duro” - Aung San Suu Kyi",
+                "“La esperanza, como el oxígeno, era lo que la impulsaba a continuar” - Ruta Sepetys",
+                "“Yo ya no tenía ninguna esperanza, y sin embargo, vivía de esperanzas” - Stanislaw Lem",
+                "“La esperanza le pertenece a la vida, es la vida misma defendiéndose” - Julio Cortázar",
+                "“Entre tantas estrellas, esperanzas: relentes de un reino animal” - Juan José Saer",
+                "“La insignificancia es siempre una garantía de seguridad” - Esopo",
+                "“La seguridad es mayormente una superstición” - Helen Keller",
+                "“No hay seguridad en esta tierra, sólo hay oportunidad” - Douglas MacArthur",
+                "“No harán muy grandes cosas los vacilantes que dudan de la seguridad” - Thomas Stearns Eliot",
+                "“A veces tienes que pensar en algo más que en tu propia seguridad, a veces tienes que pensar en el bien mayor” - Joanne Kathleen Rowling",
+                "“Para comprender la seguridad no hay que enfrentarse a ella, sino incorporarla a uno mismo” - Alan Watts",
+                "“Que Dios te conceda la esperanza por compañía” - Michael Ondaatje",
+                "“Juzgaríamos con mucha más certeza a un hombre por lo que sueña que por lo que piensa.” - Victor Hugo",
+                "“¿Cómo no caer de rodillas ante el altar de la certeza?” - Umberto Eco",
+                "“La felicidad es la certeza de no sentirse perdido” - Jorge Bucay",
+                "“La fuerza de la vida no está en la certeza, sino en la perfecta certeza de Dios” - Oswald Chambers",
+                "“Ninguna certeza existe allí donde no puede aplicarse alguna de las ciencias matemáticas o de las que están unidas con ellas” - Leonardo Da Vinci",
+                "“Apago tu fuego, enciende mi agua, puede que no haya certezas” - Gustavo Cerati",
+                "“Lo repito con una certeza aún más vehemente: la verdad está en marcha y nada la detendrá” - Émile Zola",
+                "“Era una espera sin esperanza, con la certeza de que la muerte no perdonaría” - Émile Zola"];
+
+                var randomValue = Esperanzado[Math.floor(Math.random() * Esperanzado.length)];
+                break;
+
+            case "sonador":
+                var Sonador = 
+                ["“Dios no te hubiera dado la capacidad de soñar sin darte también la posibilidad de convertir tus sueños en realidad” - Hector Tassinari",
+                "“La libertad existe tan sólo en la tierra de los sueños” - Friedrich Schiller",
+                "“Los sueños son sumamente importantes, nada se hace sin que antes se imagine” - George Lucas",
+                "“Si deseas que tus sueños se hagan realidad, ¡despierta!” - Ambrose Bierce",
+                "“Sólo los sueños y los recuerdos son verdaderos, ante la falsedad engañosa de lo que llamamos el presente y la realidad” - Alejandro Dolina",
+                "“Cualquiera que despierto se comportase como lo hiciera en sueños sería tomado por loco” - Sigmund Freud",
+                "“Me gustan más los sueños del futuro que la historia del pasado” - Thomas Jefferson",
+                "“Cada trecho recorrido enriquece al peregrino y lo acerca un poco más a hacer realidad sus sueños” - Paulo Coelho",
+                "“Somos del mismo material del que se tejen los sueños, nuestra pequeña vida está rodeada de sueños” - William Shakespeare",
+                "“Siempre sueña y apunta más alto de lo que sabes que puedes lograr” - William Faulkner",
+                "“Un hombre que no se alimenta de sus sueños, envejece pronto” - William Shakespeare",
+                "“Yo he vivido porque he soñado mucho” - Amado Nervo",
+                "“Cuando nuestros sueños se han cumplido es cuando comprendemos la riqueza de nuestra imaginación y la pobreza de la realidad” - Anne Lenclós",
+                "“La vida es mucho más pequeña que los sueños” - Rosa Montero",
+                "“Somos los creadores de música y los soñadores de sueños” - Arthur O Shaughnessy",
+                "“Solamente en los sueños somos libres. El resto del tiempo necesitamos el sueldo” - Terry Pratchett",
+                "“Ninguna fuerza abatirá tus sueños, porque ellos se nutren con su propia luz, se alimentan de su propia pasión” - Atahualpa Yupanqui",
+                "“También los sueños se sobreviven” - Fiódor Mijáilovich Dostoyevski",
+                "“Si los sueños no se cumplen cuando despertemos, con la luz del día ya veremos lo que hacemos” - Ismael Serrano",
+                "“Nadie pone sus sueños en manos de aquellos que pueden destruirlos” - Paulo Coelho",
+                "“Las gentes sin sueños son las únicas que no buscan la felicidad…” - Vladimír Holan",
+                "“Los sueños se pueden hacer realidad, si puedes sacrificar todo lo demás” - James Matthew Barrie",
+                "“Pisa con suavidad porque estás pisando mis sueños” - William Butler Yeats",
+                "“Hay que mantener vivos los sueños infantiles” - Randy Pausch",
+                "“Si vives correctamente los sueños vendrán a ti” - Randy Pausch",
+                "“En la vida humana sólo unos pocos sueños se cumplen; la gran mayoría de los sueños se roncan” - Enrique jardiel Poncela",
+                "“Hemos soñado todos los sueños en la tierra y han crecido a orillas del sol” - Charles Van Lerberghe",
+                "“Mis sueños eran más fantásticos y magníficos que mis escrituras” - Mary Shelley",
+                "“Somos lazarillos de nuestros sueños” - Ramón Gómez De La Serna",
+                "“No es bueno dejarse arrastrar por los sueños y olvidarse de vivir, recuérdalo” - Joanne Kathleen Rowling",
+                "“Las buenas poesías épicas, dramáticas, líricas, no son otra cosa que los sueños de un hombre despierto” - Joseph Joubert",
+                "“Las mujeres, como los sueños, no son nunca como las deseamos” - Luigi Pirandello",
+                "“Creo que los sueños diarios, con los ojos bien abiertos, es probable que conduzcan a la mejora del mundo” - Lyman Frank Baum",
+                "“Somos el tiempo que dedicamos a nuestros sueños” - Paulo Neo",
+                "“Cada segundo que inviertes pensando en los sueños de otro, te estás apartando de los tuyos” - Robin Sharma",
+                "“Sería maravilloso inspirar a otros hacer realidad sus sueños, que piensen “podría hacer algo para mi país”- Douglas Engelbart",
+                "“Los viejos sueños eran sueños buenos; no se realizaron, pero me alegro de haberlos tenido” - Robert James Waller",
+                "“Para eso sirven los sueños ¿No? Para enseñarnos hasta dónde podemos llegar” - Laura Gallego García",
+                "“Los sueños se hacen realidad, si no fuese así, la naturaleza no nos incitaría a tenerlos” - John Updike",
+                "“No se puede negar que a veces los sueños significan algo. ¿Quién no ha tenido sueños que luego se han realizado?” - Alberto Magno",
+                "“La verdad no está en un sueño, sino en muchos sueños” - Pier Paolo Pasolini",
+                "“Los sueños verdaderamente importantes son los que tienes cuando estás despierto” - David Lynch",
+                "“Los sueños son verdad mientras duran; y ¿no vivimos nosotros en sueños?” - Alfred Tennyson",
+                "“Continúa soldando tus sueños a la realidad” - Mathias Malzieu",
+                "“Cuando muera todo lo que es mío será tuyo, menos mis sueños” - Carlos Ruiz Zafón",
+                "“Si crees en los sueños estos se crearán” - Albert Espinosa",
+                "“La vida es una visita construida de sueños” - Ray Bradbury",
+                "“Si alguna vez te has preguntado de dónde vienen los sueños que tienes por la noche, mira a tu alrededor y lo sabrás.” - Brian Selznick",
+                "“Se sintió como no se sentía desde hacía mucho tiempo, como si sus sueños aún pudieran hacerse realidad” - Nicholas Sparks",
+                "“Los sueños son de quien los sueña, y de nadie más” - Benito Taibo",
+                "“Todo comienza con el ensueño de alguien” - Larry Niven",
+                "“Los fanáticos crean un ensueño y lo convierten en el paraíso de sus sectas” - John Keats",
+                "“Todos los seres humanos son también seres de ensueños. El soñar une a toda la humanidad” - Jack Kerouac",
+                "“El ensueño es la difusión sublime, pues no tiene finales, siempre en estado de infinito.” - José María Eguren",
+                "“Se puede matar al soñador, pero no al sueño” - Ralph Abernathy",
+                "“Soy un soñador de palabras, de palabras escritas” - Gastón Bachelard",
+                "“Los soñadores son los salvadores del mundo” - James Allen",
+                "“Todo soñador tiene asegurada una porción de felicidad” - José Narosky",
+                "“Dirás que soy un soñador, pero no soy el único” - John Lennon",
+                "“Realmente soy un soñador práctico, lo que yo quiero es convertir mis sueños en realidad” - Mahatma Gandhi",
+                "“Los sueños no están hechos de indiferencia, pereza, ni falta de ambición” - Napoleón Hill",
+                "“Todos los hombres de acción son soñadores” - James Gibbons Huneker",
+                "“Pero para descubrir la verdad sobre cómo mueren los sueños una no debería fiarse de las palabras del soñador” - Toni Morrison",
+                "“Los soñadores sueñan del cuerpo para arriba, con los cuerpos firmemente atados a una silla eléctrica” - Henry Miller",
+                "“Tanto para una nación, como para una persona, el mayor hacedor debe ser también el mayor soñador” - Theodore Roosevelt",
+                "“Lo soñado se confunde con lo pensado. La realidad y la irrealidad se vuelven continuas” - Santiago Roncagliolo",
+                "“Si vivir sólo es soñar, hagamos el bien soñando” - Amado Nervo",
+                "“No duermas para descansar, duerme para soñar. Porque los sueños están para cumplirse” - Walt Disney",
+                "“Durmiendo sueño lo que despierto sueño. Y mi soñar es continuo” - Antonio Porchia",
+                "“Tu soñar me envolvía, soñado me sentí” - Jorge Guillén",
+                "“Soñar es ver la vida de otro modo, y es olvidar un poco lo que realmente es” - José Angel Buesa",
+                "“Vale más soñar la propia vida que vivirla, aunque vivirla es también soñarla” - Marcel Proust",
+                "“Cabe soñar de sí mismo muchas cosas que no son sino representaciones exageradas del propio valor” - Georg Wilhelm Friedrich",
+                "“También yo mataría, incluso a ti: me haces soñar sin tregua, no me dejas dormir” - Clara Janés",
+                "“Soñar en teoría, es vivir un poco, pero vivir soñando es no existir” - Jean Paul Sartre",
+                "“Los astros tienen sueño, soñaré con los astros: es víspera del sueño” - Aída Cartagena Portalatín",
+                "“Los optimistas enriquecen el presente, realzan el futuro, desafían lo improbable y logran el imposible” - William Arthur Ward",
+                "“Si puedes soñarlo, puedes lograrlo” - Walt Disney",
+                "“Si no puedo estimular los sueños imposibles, tampoco debo negar a quien sueña el derecho de soñar” - Paulo Freire",
+                "“Nadie nunca es demasiado grande para soñar, y los sueños nunca envejecen” - Lucy Montgomery",
+                "“La mente humana está hecha para soñar despierta” - George Santayana",
+                "“¿Sabes que la necesidad de soñar puede ser más fuerte que la de dormir?” - Seweryna Szmaglewska",
+                "“Atrévete a soñar. Piensa en grande, cree en grande” - Jenni Rivera",
+                "“Si una persona no tiene sueños no tiene razón de vivir, soñar es necesario aun cuando el sueño va más allá de la realidad” - Ayrton Senna",
+                "“Nos pasamos un tercio de la vida soñando y dos tercios intentando soñar” - José Carlos Somoza",
+                "“¡Qué lindo que es soñar! Soñar y nada más... Con los ojos abiertos” - Kevin Johansen",
+                "“Dicen que soñar no cuesta nada. No saben lo que dicen quienes esto dicen. Soñar puede costar una barbaridad” - Ángeles Mastretta",
+                "“Cuando sueñas con algo bastante, sólo hay que esperar que se convierta en realidad.” - Jamie McGuire",
+                "“Soñar debería ser asignatura, somos, si somos persistentes, lo que soñamos” - Màxim Huerta",
+                "“El sueño mantiene en vida a cualquiera. Los que sueñan no mueren, porque nunca se desesperan” - Joël Dicker"];
+
+                var randomValue = Sonador[Math.floor(Math.random() * Sonador.length)];
+                break;
+
+            default:
+                document.getElementById("textarea-1").innerHTML = "ERROR!";
+                break;
+        }
+
+        document.getElementById("textarea-1").innerHTML = randomValue;
+        $("#textarea-1").keyup();
+
+    }
+
+    </script>
+
+    </body>
+</html>

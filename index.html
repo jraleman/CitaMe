@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>CitaMe</title>
+        <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		
+		<!-- FontAwesome - http://fortawesome.github.io/Font-Awesome/ -->
+        <link rel="stylesheet" href="css/font-awesome.min.css" />
+
+		<!-- jQueryMobileCSS - original without styling -->
+		<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+
+		<!-- nativeDroid core CSS -->
+        <link rel="stylesheet" href="css/jquerymobile.nativedroid.css" />
+
+		<!-- nativeDroid: Light/Dark -->
+        <link rel="stylesheet" href="css/jquerymobile.nativedroid.dark.css"  id='jQMnDTheme' />
+
+		<!-- nativeDroid: Color Schemes -->
+        <link rel="stylesheet" href="css/jquerymobile.nativedroid.color.yellow.css" id='jQMnDColor' />
+
+        <!-- Responsive images -->
+        <style>
+            img {max-width:80%}
+            @media screen and (orientation: landscape) {
+            .ui-mobile .ui-page {
+                min-height: 0 !important;
+            }
+        }
+        </style>
+
+        <!-- jQuery / jQueryMobile Scripts -->
+        <script src="js/jquery-1.9.1.min.js"></script>
+        <script src="js/jquery.mobile-1.4.5.min.js"></script>
+        
+    </head>
+    <body>
+        
+    <div data-role="page" data-theme='b' id="main">
+
+        <div data-role="content">   
+			<div data-nativedroid-plugin="splashscreen" data-nativedroid-splashscreen-time="8" data-nativedroid-splashscreen-animation="fadeOut" data-nativedroid-background="images/splashscreenbg.png">
+				<div class='splashScreenExample'>
+                    <br>
+					<h1><b>CitaMe</b></h1>
+					<h2><i>Generador de</i></h2>
+					<h3><i>Citas y Frases Celebres</i></h3>
+					<div class='splashScreenDroid'></div>
+				</div>				
+			</div>
+
+    </div>
+    
+    <script src="js/nativedroid.script.js"></script>
+
+    <script>
+	    window.setTimeout(function() {
+		    window.location.href = 'app.html#main';
+		}, 7000);
+    </script>
+
+    </body>
+</html>
